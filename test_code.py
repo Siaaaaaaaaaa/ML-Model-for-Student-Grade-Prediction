@@ -13,8 +13,8 @@ base_path = os.path.dirname(__file__)
 csv_read = os.path.join(base_path, 'StudentsPerformance.csv')
 data = pd.read_csv(csv_read)
 
-print('Print data before new column creation: \n')
-print(data.head()) 
+output_file = open("output.txt","w",encoding ="utf-8")
+output_file.write(f"Afișăm datele înainte de prelucrare: \n {data.head()}\n\n")
 
 #creem un folder pentru toate figurile din lucrare
 output_dir = 'Grafice_Licenta'
@@ -55,7 +55,7 @@ for nota in note:
     plt.close() 
     
 #I Analiza datelor 
-#define new column for performance  
+#definim coloane noi pentru performanță
 data['Total_Score'] = (data['math score'] + data['reading score'] + data['writing score']) / 3
 
 # 2. Creăm coloana de performanță (Class)
@@ -66,8 +66,7 @@ def categorisire(scor):
 
 data['Performance_Class'] = data['Total_Score'].apply(categorisire)
 
-print('Print data after new column creation: \n')
-print(data.head()) 
+output_file.write(f"Afișăm datele după creaarea noii coloane de performanță: \n {data.head()}\n\n" )
 
 # Folosim coloana Performance_Class creată anterior
 plt.figure(figsize=(8, 5))
@@ -104,8 +103,8 @@ education_order = {
 data_enc['parental level of education'] = data_enc['parental level of education'].map(education_order)
 data_enc['Performance_Class'] = data_enc['Performance_Class'].map({'Low':0,'Medium':1,'High':2})
 
-print('Print data after label encoding; \n')
-print(data_enc.head())
+
+output_file.write(f"Afișăsm datele după label encoding: \n {data_enc.head()} \n\n")
 
 plt.figure(figsize=(10, 8))
 correlation_matrix = data_enc.select_dtypes(include=[np.number]).corr()
@@ -114,7 +113,7 @@ plt.figure(figsize=(10, 8))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt='.2f')
 plt.savefig(os.path.join(output_dir, 'Heatmap_Corelatie.png'))
 plt.close()
-print(f'\n Graphics are in "{output_dir}" ')
+print(f'\n Graficele se găsesc în: "{output_dir}" ')
 
 #pregătim datele pentru modalare
 X = data_enc[['gender','lunch','test preparation course','parental level of education']]
@@ -128,9 +127,14 @@ model_rf.fit(X_train, Y_train)
 #evaluare & predictie
 y_pred = model_rf.predict(X_test)
 
-print("Acuratețea modelului: ", accuracy_score(Y_test, y_pred))
-print("\nRaport de clasificare: \n", classification_report(Y_test,y_pred))
+if os.path.isfile("output.txt"):
+
+    output_file.write(f"Acuratetea modelului: \n{ accuracy_score(Y_test, y_pred)}\n\n")
+    output_file.write(f"\nRaport de clasificare: \n{classification_report(Y_test,y_pred)} \n\n")
+    output_file.close()
+    print("Operație realizată cu succes!")
+else: print("Fișiserul nu a putut fi deschis. ")
 
 #profilele studentilor 
-X_cluster = data_enc[['lunch','test preparation course', 'parental level of education','Total_Score']]
+#X_cluster = data_enc[['lunch','test preparation course', 'parental level of education','Total_Score']]
 #kmeans = 

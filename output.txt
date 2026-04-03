@@ -1,0 +1,40 @@
+Afișăm datele înainte de prelucrare: 
+
+gender race/ethnicity parental level of education         lunch test preparation course  math score  reading score  writing score
+0  female        group B           bachelor's degree      standard                    none          72             72             74
+1  female        group C                some college      standard               completed          69             90             88
+2  female        group B             master's degree      standard                    none          90             95             93
+3    male        group A          associate's degree  free/reduced                    none          47             57             44
+4    male        group C                some college      standard                    none          76             78             75
+
+Afișăm datele după creaarea noii coloane de performanță: 
+    gender race/ethnicity parental level of education         lunch test preparation course  math score  reading score  writing score  Total_Score Performance_Class
+0  female        group B           bachelor's degree      standard                    none          72             72             74    72.666667            Medium
+1  female        group C                some college      standard               completed          69             90             88    82.333333              High
+2  female        group B             master's degree      standard                    none          90             95             93    92.666667              High
+3    male        group A          associate's degree  free/reduced                    none          47             57             44    49.333333               Low
+4    male        group C                some college      standard                    none          76             78             75    76.333333            Medium
+
+Afișăsm datele după label encoding: 
+gender race/ethnicity  parental level of education  lunch  test preparation course  math score  reading score  writing score  Total_Score  Performance_Class
+0       0        group B                            4      1                        1          72             72             74    72.666667                  1
+1       0        group C                            2      1                        0          69             90             88    82.333333                  2
+2       0        group B                            5      1                        1          90             95             93    92.666667                  2
+3       1        group A                            3      0                        1          47             57             44    49.333333                  0
+4       1        group C                            2      1                        1          76             78             75    76.333333                  1 
+
+Acuratetea modelului: 
+0.5
+
+Raport de clasificare: 
+              precision    recall  f1-score   support
+
+           0       0.42      0.18      0.25        62
+           1       0.53      0.81      0.64       107
+           2       0.18      0.06      0.10        31
+
+    accuracy                           0.50       200
+   macro avg       0.38      0.35      0.33       200
+weighted avg       0.44      0.50      0.44       200
+ 
+
