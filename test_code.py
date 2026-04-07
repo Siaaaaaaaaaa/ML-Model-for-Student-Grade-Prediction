@@ -120,7 +120,6 @@ X = data_enc[['gender','lunch','test preparation course','parental level of educ
 Y = data_enc['Performance_Class']
 
 X_train,X_test,Y_train,Y_test = train_test_split(X,Y, test_size=0.2, random_state=42)
-
 model_rf = RandomForestClassifier(n_estimators=100, random_state=42)
 model_rf.fit(X_train, Y_train)
 
