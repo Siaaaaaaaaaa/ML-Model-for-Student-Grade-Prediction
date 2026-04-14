@@ -1,0 +1,40 @@
+Afișăm datele înainte de prelucrare: 
+    gender race/ethnicity  ... reading score writing score
+0  female        group B  ...            72            74
+1  female        group C  ...            90            88
+2  female        group B  ...            95            93
+3    male        group A  ...            57            44
+4    male        group C  ...            78            75
+
+[5 rows x 8 columns]
+
+Rezultate regresii individuale: 
+
+Materia: math score
+ R2 Score: 0.120
+
+ Eroare medie: 11.609 puncte 
+
+Materia: reading score
+ R2 Score: 0.122
+
+ Eroare medie: 11.116 puncte 
+
+Materia: writing score
+ R2 Score: 0.226
+
+ Eroare medie: 10.480 puncte 
+
+Performanta prin medie 
+Acuratețe finală (după regresie): 0.520
+
+Raport detaliat: 
+              precision    recall  f1-score   support
+
+        High       0.20      0.03      0.06        31
+         Low       0.43      0.21      0.28        62
+      Medium       0.55      0.84      0.66       107
+
+    accuracy                           0.52       200
+   macro avg       0.39      0.36      0.33       200
+weighted avg       0.46      0.52      0.45       200
